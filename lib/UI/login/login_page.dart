@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactiva/UI/registro/registro.dart';
 
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,6 +8,8 @@ import 'package:reactiva/UI/widgets/googleButton.dart';
 import 'package:reactiva/UI/widgets/header.dart';
 import 'package:reactiva/UI/widgets/nextButton.dart';
 import 'package:reactiva/navigator_utils.dart';
+
+import 'login_cubit.dart';
 // import 'package:reactiva/src/widgets/nextButton.dart';
 
 class LoginPage extends StatelessWidget {
@@ -120,16 +123,16 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ),
           const SizedBox(height: 3.0),
-          InkWell(
-            onTap: () {},
-            child: Text(
-              'Olvidaste tu contraseña?',
-              style: TextStyle(
-                fontSize: 14.0,
-                color: Theme.of(context).colorScheme.surface,
-              ),
-            ),
-          ),
+          // InkWell(
+          //   onTap: () {},
+          //   child: Text(
+          //     'Olvidaste tu contraseña?',
+          //     style: TextStyle(
+          //       fontSize: 14.0,
+          //       color: Theme.of(context).colorScheme.surface,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

@@ -6,6 +6,8 @@ import 'package:reactiva/UI/registro/registro_form_2.dart';
 import 'package:reactiva/UI/widgets/logoReactiva.dart';
 import 'package:reactiva/navigator_utils.dart';
 
+import '../../navigator_utils.dart';
+
 class RegistroFormFirst extends StatefulWidget {
   const RegistroFormFirst({Key key}) : super(key: key);
 
@@ -54,7 +56,7 @@ class _RegistroFormFirstState extends State<RegistroFormFirst> {
                         // posible animacion
                         snapshot
                             ? pushToPage(context, RegistroFormSecond())
-                            : print(' ');
+                            : print('');
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

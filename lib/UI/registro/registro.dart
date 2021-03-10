@@ -30,7 +30,8 @@ class RegistroPage extends StatelessWidget {
             Spacer(),
             LogoReactiva(),
             const SizedBox(height: 30.0),
-            NextButton(nextWidget: RegistroFormFirst(), label: 'Registro'),
+            NextButton(
+                nextWidget: RegistroFormFirst(), label: 'Iniciar Registro'),
             const SizedBox(height: 80.0),
             Container(
               width: double.infinity,
