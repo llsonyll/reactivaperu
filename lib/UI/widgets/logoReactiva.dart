@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class LogoReactiva extends StatelessWidget {
   const LogoReactiva({Key key}) : super(key: key);
 
+  // Cambiar > a ReactivaLogo
   @override
   Widget build(BuildContext context) {
     return Text(

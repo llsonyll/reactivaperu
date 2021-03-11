@@ -30,3 +30,27 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginState.none);
   }
 }
+
+class EmailCubit extends Cubit<bool> {
+  EmailCubit() : super(false);
+
+  void validateEmail(String email) {
+    if (!email.contains('@gmail.com')) {
+      emit(false);
+    } else {
+      emit(true);
+    }
+  }
+}
+
+class PasswordCubit extends Cubit<bool> {
+  PasswordCubit() : super(false);
+
+  void validatePassword(String password) {
+    if (password.length <= 6) {
+      emit(false);
+    } else {
+      emit(true);
+    }
+  }
+}

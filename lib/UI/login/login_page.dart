@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reactiva/UI/home/home.dart';
 import 'package:reactiva/UI/registro/registro.dart';
 
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,7 +10,7 @@ import 'package:reactiva/UI/widgets/header.dart';
 import 'package:reactiva/UI/widgets/nextButton.dart';
 import 'package:reactiva/navigator_utils.dart';
 
-import 'login_cubit.dart';
+// import 'login_cubit.dart';
 // import 'package:reactiva/src/widgets/nextButton.dart';
 
 class LoginPage extends StatelessWidget {
@@ -103,7 +104,7 @@ class _LoginFormState extends State<LoginForm> {
           // ),
           const SizedBox(height: 20.0),
           NextButton(
-            nextWidget: null,
+            nextWidget: Home(),
           ),
           const SizedBox(height: 10.0),
           FacebookButton(),
