@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:reactiva/UI/carrito_de_compras/carrito.dart';
 import 'package:reactiva/UI/carrito_de_compras/carrito_cubit.dart';
 import 'package:reactiva/UI/categorias/anuncios/anuncios.dart';
 import 'package:reactiva/UI/categorias/categorias_cubit.dart';
@@ -20,6 +19,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double iconSize = 24;
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => CategoriaCubit()),
@@ -32,12 +32,42 @@ class Home extends StatelessWidget {
               title: LogoReactiva(),
               centerTitle: true,
               actions: [
-                BlocBuilder<CarritoItemsCubit, int>(
+                BlocConsumer<CarritoItemsCubit, int>(
+                    listener: (context, snapshot) => print(snapshot),
                     builder: (context, snapshot) {
-                  return CarritoDeCompras(
-                    number: snapshot,
-                  );
-                }),
+                      return InkWell(
+                        onTap: () {},
+                        child: Center(
+                          child: Stack(
+                            children: [
+                              FaIcon(
+                                FontAwesomeIcons.shoppingCart,
+                                color: Colors.white,
+                                size: iconSize,
+                              ),
+                              Positioned(
+                                right: 0,
+                                bottom: 0,
+                                child: Container(
+                                  padding: const EdgeInsets.all(2.5),
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Text(
+                                    snapshot.toString(),
+                                    style: TextStyle(
+                                      fontSize: iconSize / 2,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
               ],
             ),
             drawer: ReactivaSideMenu(),

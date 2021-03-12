@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:reactiva/UI/carrito_de_compras/carrito_cubit.dart';
 import 'package:reactiva/UI/producto/producto.dart';
 import 'package:reactiva/navigator_utils.dart';
 
@@ -14,22 +13,23 @@ class TiendaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => TiendaCubit()),
-        BlocProvider(create: (context) => CarritoItemsCubit())
+        BlocProvider(create: (_) => TiendaCubit()),
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Nombre Restaurante'),
+          title: Column(
+            children: [
+              Text('Nombre Restaurante'),
+              Text(
+                'Direccion de envio',
+                style: TextStyle(
+                  fontSize: 16.0,
+                ),
+              ),
+            ],
+          ),
           centerTitle: true,
-          actions: [
-            // BlocBuilder<CarritoItemsCubit, int>(
-            //   builder: (context, snapshot) {
-            //     return CarritoDeCompras(
-            //       number: snapshot,
-            //     );
-            //   },
-            // ),
-          ],
+          actions: [],
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -52,7 +52,10 @@ class TiendaPage extends StatelessWidget {
                       child: ListTile(
                         title: Text('Nombre de la tienda'),
                         subtitle: Text('Costo de envio'),
-                        trailing: FaIcon(FontAwesomeIcons.infoCircle),
+                        trailing: IconButton(
+                          icon: FaIcon(FontAwesomeIcons.infoCircle),
+                          onPressed: () {},
+                        ),
                       ),
                     ),
                   ),

@@ -9,35 +9,36 @@ class RestaurantesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CarritoItemsCubit(),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.blue,
-        ),
-        child: Center(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      pushToPage(context, TiendaPage());
-                    },
-                    child: Text('ir A Restaurante'),
-                  ),
-                  const SizedBox(width: 20),
-                  TextButton(
-                    onPressed: () {
-                      context.read<CarritoItemsCubit>().incrementar();
-                    },
-                    child: Text('Quitar'),
-                  ),
-                ],
-              ),
-            ],
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.blue,
+      ),
+      child: Center(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    pushToPage(context, TiendaPage());
+                  },
+                  child: Text('ir A Restaurante'),
+                ),
+                const SizedBox(width: 20),
+                Builder(
+                  builder: (context) {
+                    return TextButton(
+                      onPressed: () {
+                        context.read<CarritoItemsCubit>().incrementar();
+                      },
+                      child: Text('Quitar'),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
