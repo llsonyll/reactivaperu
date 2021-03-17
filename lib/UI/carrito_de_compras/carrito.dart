@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:reactiva/UI/carrito_de_compras/carrito_cubit.dart';
 
 class CarritoDeCompras extends StatelessWidget {
-  const CarritoDeCompras({Key key}) : super(key: key);
+  const CarritoDeCompras({
+    Key key,
+    @required this.itemsEnCarrito,
+  }) : super(key: key);
+
+  final int itemsEnCarrito;
 
   @override
   Widget build(BuildContext context) {
     double iconSize = 24;
-    return BlocProvider(
-      create: (_) => CarritoItemsCubit(),
-      child: InkWell(
-        onTap: () {},
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        width: iconSize * 2,
+        height: iconSize * 2,
+        color: Colors.purple,
         child: Center(
           child: Stack(
             children: [
@@ -21,26 +26,26 @@ class CarritoDeCompras extends StatelessWidget {
                 color: Colors.white,
                 size: iconSize,
               ),
-              Positioned(
-                right: 0,
-                bottom: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(2.5),
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Builder(builder: (context) {
-                    return Text(
-                      context.read<CarritoItemsCubit>().currentState.toString(),
-                      style: TextStyle(
-                        fontSize: iconSize / 2,
-                        color: Colors.white,
+              itemsEnCarrito != 0
+                  ? Positioned(
+                      right: 0,
+                      bottom: 0,
+                      child: Container(
+                        padding: const EdgeInsets.all(2.5),
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Text(
+                          itemsEnCarrito.toString(),
+                          style: TextStyle(
+                            fontSize: iconSize / 2,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    );
-                  }),
-                ),
-              ),
+                    )
+                  : const FittedBox(),
             ],
           ),
         ),

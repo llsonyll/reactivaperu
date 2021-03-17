@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:reactiva/domain/models/sub_menu.dart';
+import 'package:reactiva/domain/test_data/sub_menu.dart';
 
 import 'logoReactiva.dart';
 

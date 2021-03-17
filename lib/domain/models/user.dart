@@ -1,15 +1,7 @@
 class User {
-  const User(
-    this.nombre,
-    this.apellidos,
-    this.correo,
-    this.telefono,
-    this.password,
-  );
+  User({this.nombre, this.correo, this.password});
 
-  final String nombre;
-  final String apellidos;
   final String correo;
-  final String telefono;
   final String password;
+  final String nombre;
 }

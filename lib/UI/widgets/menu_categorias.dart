@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:reactiva/UI/categorias/categorias_cubit.dart';
 import 'package:reactiva/UI/common/colors.dart';
-import 'package:reactiva/domain/models/categoria.dart';
+import 'package:reactiva/domain/models/tiendas/categoria.dart';
 
 class MenuCategorias extends StatelessWidget {
   const MenuCategorias({

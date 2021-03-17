@@ -2,24 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:reactiva/UI/producto/producto.dart';
+import 'package:reactiva/domain/models/producto.dart';
+import 'package:reactiva/domain/models/tiendas/tienda.dart';
 import 'package:reactiva/navigator_utils.dart';
 
 import 'tienda_cubit.dart';
 
 class TiendaPage extends StatelessWidget {
-  const TiendaPage({Key key}) : super(key: key);
+  const TiendaPage({Key key, this.tienda}) : super(key: key);
+
+  final Tienda tienda;
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => TiendaCubit()),
+        BlocProvider(create: (context) => TiendaCubit(tienda)..init()),
       ],
       child: Scaffold(
         appBar: AppBar(
           title: Column(
             children: [
-              Text('Nombre Restaurante'),
+              Text(tienda.nombre),
               Text(
                 'Direccion de envio',
                 style: TextStyle(
@@ -32,73 +36,71 @@ class TiendaPage extends StatelessWidget {
           actions: [],
         ),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
+          child: BlocBuilder<TiendaCubit, List<Producto>>(
+            builder: (context, tiendaProductos) {
+              return Column(
                 children: [
-                  Container(
-                    height: 175,
-                    decoration: BoxDecoration(
-                      color: Colors.orange,
-                    ),
-                  ),
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    child: Container(
-                      height: 75,
-                      color: Colors.yellowAccent.withOpacity(.5),
-                      child: ListTile(
-                        title: Text('Nombre de la tienda'),
-                        subtitle: Text('Costo de envio'),
-                        trailing: IconButton(
-                          icon: FaIcon(FontAwesomeIcons.infoCircle),
-                          onPressed: () {},
+                  Stack(
+                    children: [
+                      Container(
+                        height: 175,
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
                         ),
                       ),
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: Container(
+                          height: 75,
+                          color: Colors.yellowAccent.withOpacity(.5),
+                          child: ListTile(
+                            title: Text('Nombre de la tienda'),
+                            subtitle: Text('Costo de envio'),
+                            trailing: IconButton(
+                              icon: FaIcon(FontAwesomeIcons.infoCircle),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    height: 50,
+                    width: double.infinity,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (_, index) {
+                        return Center(
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                            width: 50.0,
+                            height: 25.0,
+                            color: Colors.black45,
+                          ),
+                        );
+                      },
                     ),
                   ),
+                  tiendaProductos.isEmpty
+                      ? CircularProgressIndicator()
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: tiendaProductos.length,
+                            itemBuilder: (context, index) {
+                              final Producto producto = tiendaProductos[index];
+                              return ItemTienda(producto: producto);
+                            },
+                          ),
+                        ),
                 ],
-              ),
-              Container(
-                height: 50,
-                width: double.infinity,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (_, index) {
-                    return Center(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        width: 50.0,
-                        height: 25.0,
-                        color: Colors.black45,
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SizedBox(height: 10.0),
-                    Text('Titulo sub-categoria'),
-                    const SizedBox(height: 10.0),
-                    ItemTienda(),
-                    ItemTienda(),
-                    const SizedBox(height: 10.0),
-                    Text('Titulo sub-categoria'),
-                    const SizedBox(height: 10.0),
-                    ItemTienda(),
-                    ItemTienda(),
-                    const SizedBox(height: 10.0),
-                  ],
-                ),
-              ),
-            ],
+              );
+            },
           ),
         ),
       ),
@@ -109,12 +111,15 @@ class TiendaPage extends StatelessWidget {
 class ItemTienda extends StatelessWidget {
   const ItemTienda({
     Key key,
+    @required this.producto,
   }) : super(key: key);
+
+  final Producto producto;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      padding: const EdgeInsets.only(top: 5.0),
       child: InkWell(
         onTap: () {
           pushToPage(context, ProductoPage());
@@ -136,8 +141,8 @@ class ItemTienda extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Text('Nombre Producto'),
-                          Text('Descripcion Producto'),
+                          Text(producto.nombre),
+                          Text(producto.descripcion),
                         ],
                       ),
                       const SizedBox(height: 50.0),
