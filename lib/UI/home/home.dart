@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:reactiva/UI/carrito_cubit.dart';
 import 'package:reactiva/UI/widgets/carrito.dart';
 import 'package:reactiva/UI/categorias/anuncios/anuncios.dart';
 import 'package:reactiva/UI/categorias/categorias_cubit.dart';
@@ -13,7 +12,6 @@ import 'package:reactiva/UI/common/colors.dart';
 import 'package:reactiva/UI/widgets/buscador.dart';
 import 'package:reactiva/UI/widgets/logoReactiva.dart';
 import 'package:reactiva/UI/widgets/side_menu.dart';
-import 'package:reactiva/domain/models/producto.dart';
 import 'package:reactiva/domain/models/tiendas/categoria.dart';
 
 class Home extends StatelessWidget {
@@ -30,10 +28,7 @@ class Home extends StatelessWidget {
               title: LogoReactiva(),
               centerTitle: true,
               actions: [
-                BlocBuilder<CarritoCubit, List<Producto>>(
-                    builder: (context, snapshot) {
-                  return CarritoDeCompras(itemsEnCarrito: snapshot);
-                }),
+                CarritoDeCompras(),
               ],
             ),
             drawer: ReactivaSideMenu(),

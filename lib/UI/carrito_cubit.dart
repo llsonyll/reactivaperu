@@ -7,21 +7,21 @@ class CarritoCubit extends Cubit<List<Producto>> {
   List<Producto> get carritoItems => state.where((event) => true).toList();
   List<Producto> get currentState => state;
 
-  void addItemToCart(Producto producto) {
+  void agregarProductoCarrito(Producto producto) {
     // final existe = state.where((element) => producto.idProducto == element.idProducto);
     state.add(producto);
     emit(List<Producto>.from(state));
   }
 
-  void deleteItemFromCart(Producto producto) {
+  void eliminarProductoCarrito(Producto producto) {
     if (state.isEmpty) {
       print('lista vacia');
-      emit(state);
+      emit(List<Producto>.from(state));
     } else {
       final index = state
           .indexWhere((element) => producto.idProducto == element.idProducto);
       state.removeAt(index);
-      print(List<Producto>.from(state));
+      emit(List<Producto>.from(state));
     }
   }
 }

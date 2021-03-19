@@ -7,7 +7,6 @@ import 'package:reactiva/domain/models/producto.dart';
 import 'package:reactiva/domain/models/tiendas/tienda.dart';
 import 'package:reactiva/navigator_utils.dart';
 
-import '../carrito_cubit.dart';
 import 'tienda_cubit.dart';
 
 class TiendaPage extends StatelessWidget {
@@ -36,10 +35,7 @@ class TiendaPage extends StatelessWidget {
           ),
           centerTitle: true,
           actions: [
-            BlocBuilder<CarritoCubit, List<Producto>>(
-                builder: (context, snapshot) {
-              return CarritoDeCompras(itemsEnCarrito: snapshot);
-            }),
+            CarritoDeCompras(),
           ],
         ),
         body: SingleChildScrollView(

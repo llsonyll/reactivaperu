@@ -152,7 +152,7 @@ class ProductoPage extends StatelessWidget {
                             Navigator.of(context).pop();
                             context
                                 .read<CarritoCubit>()
-                                .addItemToCart(producto);
+                                .agregarProductoCarrito(producto);
                           },
                           child: Container(
                             height: size.height * .05,
