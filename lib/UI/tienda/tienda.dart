@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:reactiva/UI/producto/producto.dart';
+import 'package:reactiva/UI/widgets/carrito.dart';
 import 'package:reactiva/domain/models/producto.dart';
 import 'package:reactiva/domain/models/tiendas/tienda.dart';
 import 'package:reactiva/navigator_utils.dart';
 
+import '../carrito_cubit.dart';
 import 'tienda_cubit.dart';
 
 class TiendaPage extends StatelessWidget {
@@ -33,7 +35,12 @@ class TiendaPage extends StatelessWidget {
             ],
           ),
           centerTitle: true,
-          actions: [],
+          actions: [
+            BlocBuilder<CarritoCubit, List<Producto>>(
+                builder: (context, snapshot) {
+              return CarritoDeCompras(itemsEnCarrito: snapshot);
+            }),
+          ],
         ),
         body: SingleChildScrollView(
           child: BlocBuilder<TiendaCubit, List<Producto>>(

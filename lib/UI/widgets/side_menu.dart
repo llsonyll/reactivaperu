@@ -88,7 +88,9 @@ class ReactivaSideMenu extends StatelessWidget {
                   ),
                   onTap: () {
                     // Navegacion hacia el sub-menu : To Do
-                    pushToPage(context, subMenu.route);
+                    subMenu.route == null
+                        ? Navigator.of(context).pop()
+                        : pushToPage(context, subMenu.route);
                   },
                 );
               },

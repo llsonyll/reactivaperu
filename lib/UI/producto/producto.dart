@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:reactiva/UI/carrito_cubit.dart';
 import 'package:reactiva/UI/common/colors.dart';
 import 'package:reactiva/UI/producto/producto_cubit.dart';
 import 'package:reactiva/domain/models/producto.dart';
@@ -142,44 +143,45 @@ class ProductoPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Builder(builder: (context) {
-                      return Positioned(
-                        left: size.width / 2 - size.width * .4 / 2,
-                        bottom: size.height * .025,
-                        child: Center(
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Container(
-                              height: size.height * .05,
-                              width: size.width * .4,
-                              child: Center(
-                                child: Text(
-                                  'Añadir al Carrito',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                    Positioned(
+                      left: size.width / 2 - size.width * .4 / 2,
+                      bottom: size.height * .025,
+                      child: Center(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            context
+                                .read<CarritoCubit>()
+                                .addItemToCart(producto);
+                          },
+                          child: Container(
+                            height: size.height * .05,
+                            width: size.width * .4,
+                            child: Center(
+                              child: Text(
+                                'Añadir al Carrito',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              decoration: BoxDecoration(
-                                color: reactiva_success,
-                                borderRadius: BorderRadius.circular(3.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    offset: Offset(2.5, 2.5),
-                                    color: Colors.black26,
-                                    spreadRadius: 5,
-                                    blurRadius: 5,
-                                  ),
-                                ],
-                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              color: reactiva_success,
+                              borderRadius: BorderRadius.circular(3.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  offset: Offset(2.5, 2.5),
+                                  color: Colors.black26,
+                                  spreadRadius: 5,
+                                  blurRadius: 5,
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      );
-                    }),
+                      ),
+                    ),
                   ],
                 ),
               ),

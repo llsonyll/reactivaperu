@@ -23,6 +23,7 @@ class CheckOut extends StatelessWidget {
                 ? ListView.builder(
                     itemCount: snapshot.length,
                     itemBuilder: (context, index) {
+                      final Producto producto = itemsEnCarrito[index];
                       return InkWell(
                         onTap: () {},
                         child: Container(
@@ -31,7 +32,7 @@ class CheckOut extends StatelessWidget {
                           height: 50.0,
                           margin: const EdgeInsets.all(10.0),
                           child: Text(
-                            'Komooo',
+                            producto.nombre,
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
