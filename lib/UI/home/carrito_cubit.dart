@@ -4,7 +4,22 @@ import 'package:reactiva/domain/models/producto.dart';
 class CarritoItemsCubit extends Cubit<List<Producto>> {
   CarritoItemsCubit() : super([]);
 
-  void addItemToCart() {}
+  List<Producto> get items => state.where((event) => true).toList();
 
-  void deleteItemFromCart() {}
+  void addItemToCart(Producto producto) {
+    state.add(producto);
+    emit(List<Producto>.from(state));
+  }
+
+  void addProductoToCart(Producto producto) {
+    state.add(producto);
+  }
+
+  void deleteItemFromCart() {
+    if (state.isEmpty) {
+      print('lista vacia');
+    } else {
+      print('lista con Items');
+    }
+  }
 }

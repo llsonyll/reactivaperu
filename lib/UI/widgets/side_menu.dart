@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:reactiva/domain/test_data/sub_menu.dart';
+import 'package:reactiva/UI/home/menu_options/sub_menu.dart';
+import 'package:reactiva/UI/login/login_page.dart';
+import 'package:reactiva/navigator_utils.dart';
 
 import 'logoReactiva.dart';
 
@@ -81,11 +83,12 @@ class ReactivaSideMenu extends StatelessWidget {
                   ),
                   subtitle: Text(
                     subMenu.descripcion,
-                    //Color tema : To Do
+                    //Color tema  : To Do
                     style: TextStyle(),
                   ),
                   onTap: () {
                     // Navegacion hacia el sub-menu : To Do
+                    pushToPage(context, subMenu.route);
                   },
                 );
               },
@@ -94,7 +97,9 @@ class ReactivaSideMenu extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                pushAndReplaceToPage(context, LoginPage());
+              },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(

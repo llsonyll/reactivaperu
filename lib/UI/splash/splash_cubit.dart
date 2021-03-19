@@ -12,6 +12,6 @@ class SplashCubit extends Cubit<SplashState> {
   Future<void> init() async {
     // Verify local storage
     await Future.delayed(const Duration(seconds: 2));
-    emit(SplashState.existing_user);
+    emit(SplashState.none);
   }
 }

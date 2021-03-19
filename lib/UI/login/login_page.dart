@@ -113,7 +113,7 @@ class _LoginFormState extends State<LoginForm> {
           Spacer(),
           InkWell(
             onTap: () {
-              pushToPage(context, RegistroPage());
+              pushAndReplaceToPage(context, RegistroPage());
             },
             child: Text(
               'Registrate',

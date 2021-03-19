@@ -11,34 +11,36 @@ class RestaurantesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => RestaurantesCubit()..init(),
-      child: Column(
-        children: [
-          Container(
-            color: Colors.blue,
-            height: 75,
-            child: Center(
-              child: Text('SubCategorias'),
+      child: Column(children: [
+        Container(
+          color: Colors.blue,
+          height: 50.0,
+          width: double.infinity,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 10,
+            itemBuilder: (context, index) => Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10.0),
+              width: 25,
+              height: 25,
+              child: Center(child: Text('$index')),
             ),
           ),
-          BlocBuilder<RestaurantesCubit, List<Tienda>>(
+        ),
+        BlocBuilder<RestaurantesCubit, List<Tienda>>(
             builder: (context, snapshot) {
-              return snapshot.isEmpty
-                  ? CircularProgressIndicator()
-                  : Expanded(
-                      child: ListView.builder(
-                        itemCount: snapshot.length,
-                        itemBuilder: (context, index) {
-                          final Tienda restaurante = snapshot[index];
-                          return ItemRestauranteReactiva(
-                            restaurante: restaurante,
-                          );
-                        },
-                      ),
-                    );
-            },
-          ),
-        ],
-      ),
+          return snapshot.isEmpty
+              ? CircularProgressIndicator()
+              : Expanded(
+                  child: ListView.builder(
+                  itemCount: snapshot.length,
+                  itemBuilder: (context, index) {
+                    final Tienda restaurante = snapshot[index];
+                    return ItemRestauranteReactiva(restaurante: restaurante);
+                  },
+                ));
+        }),
+      ]),
     );
   }
 }

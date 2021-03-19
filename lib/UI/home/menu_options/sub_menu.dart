@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'configuracion/configuracion.dart';
+
 class SubMenu {
   const SubMenu({this.nombre, this.descripcion, this.route});
 
@@ -15,5 +17,5 @@ final List<SubMenu> subMenus = [
   SubMenu(
       nombre: 'Configuracion',
       descripcion: 'Descripcion del menu',
-      route: null),
+      route: Configuration()),
 ];

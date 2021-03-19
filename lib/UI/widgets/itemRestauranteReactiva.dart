@@ -18,17 +18,17 @@ class ItemRestauranteReactiva extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10.0, left: 8.0, right: 8.0),
       child: InkWell(
         onTap: () {
-          pushToPage(
-            context,
-            TiendaPage(tienda: restaurante),
-          );
+          pushToPage(context, TiendaPage(tienda: restaurante));
         },
         child: Stack(
           children: [
-            Container(
-              height: 175,
-              decoration: BoxDecoration(
-                color: Colors.orange,
+            Hero(
+              tag: restaurante.idTienda,
+              child: Container(
+                height: 175,
+                decoration: BoxDecoration(
+                  color: Colors.orange,
+                ),
               ),
             ),
             Positioned(

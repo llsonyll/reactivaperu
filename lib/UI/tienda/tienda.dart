@@ -42,10 +42,13 @@ class TiendaPage extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      Container(
-                        height: 175,
-                        decoration: BoxDecoration(
-                          color: Colors.orange,
+                      Hero(
+                        tag: tienda.idTienda,
+                        child: Container(
+                          height: 175,
+                          decoration: BoxDecoration(
+                            color: Colors.orange,
+                          ),
                         ),
                       ),
                       Positioned(
@@ -122,7 +125,11 @@ class ItemTienda extends StatelessWidget {
       padding: const EdgeInsets.only(top: 5.0),
       child: InkWell(
         onTap: () {
-          pushToPage(context, ProductoPage());
+          pushToPage(
+              context,
+              ProductoPage(
+                producto: producto,
+              ));
         },
         child: Card(
           elevation: 2.0,
@@ -154,9 +161,14 @@ class ItemTienda extends StatelessWidget {
               Expanded(
                 // Imagen producto
                 flex: 2,
-                child: Container(
-                  height: 150,
-                  color: Colors.orangeAccent,
+                child: Material(
+                  child: Hero(
+                    tag: producto.idProducto,
+                    child: Container(
+                      height: 150,
+                      color: Colors.orangeAccent,
+                    ),
+                  ),
                 ),
               ),
             ],
