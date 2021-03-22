@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'logoReactiva.dart';
+
 class Header extends StatelessWidget {
   const Header({
     Key key,
@@ -15,14 +17,8 @@ class Header extends StatelessWidget {
         color: Theme.of(context).colorScheme.primary,
       ),
       child: Center(
-        child: Text(
-          'Reactiva Peru',
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
-            // color: reactiva_golden,
-            fontSize: 32.0,
-            fontWeight: FontWeight.w700,
-          ),
+        child: LogoReactiva(
+          height: 50.0,
         ),
       ),
     );

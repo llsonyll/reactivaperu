@@ -67,7 +67,29 @@ class TiendaPage extends StatelessWidget {
                               subtitle: Text('Costo de envio'),
                               trailing: IconButton(
                                 icon: FaIcon(FontAwesomeIcons.infoCircle),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    PageRouteBuilder(
+                                        barrierColor: Colors.black45,
+                                        barrierDismissible: true,
+                                        opaque: false,
+                                        pageBuilder:
+                                            (context, animation, builder) {
+                                          return FadeTransition(
+                                            opacity: animation,
+                                            child: Dialog(
+                                              child: GestureDetector(
+                                                onTap:
+                                                    Navigator.of(context).pop,
+                                                child: RestauranteDetails(
+                                                  restaurante: tienda,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }),
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -115,6 +137,63 @@ class TiendaPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class RestauranteDetails extends StatelessWidget {
+  const RestauranteDetails({
+    Key key,
+    @required this.restaurante,
+  }) : super(key: key);
+
+  final Tienda restaurante;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5.0)),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    restaurante.nombre,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  Text('Direccion Restaurante'),
+                  Text('Telefono Restaurante'),
+                  Text('Descripcion Restaurante'),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              height: 200,
+              decoration: BoxDecoration(
+                color: Colors.orangeAccent,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(5.0),
+                  bottomRight: Radius.circular(5.0),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

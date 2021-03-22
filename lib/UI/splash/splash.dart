@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'splash_cubit.dart';
 import 'package:reactiva/UI/login/login_page.dart';
@@ -34,6 +35,13 @@ class Splash extends StatelessWidget {
             height: size.height,
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
+            ),
+            child: Center(
+              child: SvgPicture.asset(
+                'assets/logo_reactiva.svg',
+                height: 50.0,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

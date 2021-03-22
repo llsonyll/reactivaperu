@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactiva/UI/carrito_cubit.dart';
-import 'package:reactiva/domain/models/producto.dart';
+import 'package:reactiva/domain/models/check_out_product.dart';
 
 class CheckOut extends StatelessWidget {
   const CheckOut({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CarritoCubit, List<Producto>>(
+    return BlocBuilder<CarritoCubit, List<CheckOutProduct>>(
       builder: (context, snapshot) {
         return Scaffold(
           appBar: AppBar(
@@ -18,7 +18,7 @@ class CheckOut extends StatelessWidget {
               ? ListView.builder(
                   itemCount: snapshot.length,
                   itemBuilder: (context, index) {
-                    final Producto producto = snapshot[index];
+                    final CheckOutProduct producto = snapshot[index];
                     return CheckOutItem(producto: producto);
                   },
                 )
@@ -37,15 +37,16 @@ class CheckOutItem extends StatelessWidget {
     @required this.producto,
   }) : super(key: key);
 
-  final Producto producto;
+  final CheckOutProduct producto;
 
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       title: ListTile(
-        title: Text(producto.nombre),
-        subtitle: Text(producto.descripcion),
-        trailing: Text('Precio: ${producto.precio}'),
+        title: Text(producto.producto.nombre),
+        subtitle: Text('Cantidad: ${producto.cantidad}'),
+        trailing:
+            Text('Total: ${producto.calcularPrecioTotal().toStringAsFixed(2)}'),
       ),
       children: [
         ListTile(
@@ -53,14 +54,17 @@ class CheckOutItem extends StatelessWidget {
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text('Cantidad: 3'),
+              Text(
+                  'Precio Unitario: S/${producto.producto.precio.toStringAsFixed(2)}'),
               Text('Extras: si/no'),
             ],
           ),
           trailing: IconButton(
               icon: Icon(Icons.delete_outline_rounded),
               onPressed: () {
-                context.read<CarritoCubit>().eliminarProductoCarrito(producto);
+                context
+                    .read<CarritoCubit>()
+                    .eliminarProductoCarrito(producto.producto);
               }),
         ),
       ],

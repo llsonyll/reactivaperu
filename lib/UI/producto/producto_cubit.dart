@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ProductoCantidadCubit extends Cubit<int> {
   ProductoCantidadCubit() : super(1);
 
+  int get num => 3;
+
   void incrementarCantidad() {
     emit(state + 1);
   }

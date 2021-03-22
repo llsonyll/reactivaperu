@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:reactiva/UI/checkout/checkout.dart';
-import 'package:reactiva/domain/models/producto.dart';
+import 'package:reactiva/domain/models/check_out_product.dart';
 import 'package:reactiva/navigator_utils.dart';
 
 import '../carrito_cubit.dart';
@@ -13,7 +13,7 @@ class CarritoDeCompras extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double iconSize = 24;
-    return BlocBuilder<CarritoCubit, List<Producto>>(
+    return BlocBuilder<CarritoCubit, List<CheckOutProduct>>(
         builder: (context, snapshot) {
       return InkWell(
         onTap: () {
