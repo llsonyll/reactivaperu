@@ -65,12 +65,12 @@ class _LoginFormState extends State<LoginForm> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20.0),
       width: double.infinity,
-      height: size.height * .8,
+      height: size.height * .85,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primaryVariant,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(size.height * .25),
-          topRight: Radius.circular(size.height * .25),
+          topLeft: Radius.circular(size.width * .5),
+          topRight: Radius.circular(size.width * .5),
         ),
       ),
       child: Column(
@@ -102,15 +102,15 @@ class _LoginFormState extends State<LoginForm> {
           //   onPressed: () {},
           //   child: Text('Continuar'),
           // ),
-          const SizedBox(height: 20.0),
+          const SizedBox(height: 10.0),
           NextButton(
             nextWidget: Home(),
           ),
-          const SizedBox(height: 10.0),
+          const SizedBox(height: 5.0),
           FacebookButton(),
           const SizedBox(height: 5.0),
           GoogleButton(),
-          Spacer(),
+          const SizedBox(height: 30.0),
           InkWell(
             onTap: () {
               pushAndReplaceToPage(context, RegistroPage());

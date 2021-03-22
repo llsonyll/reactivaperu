@@ -10,7 +10,7 @@ class Header extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
-      height: size.height * .2,
+      height: size.height * .15,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary,
       ),

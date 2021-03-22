@@ -38,76 +38,82 @@ class TiendaPage extends StatelessWidget {
             CarritoDeCompras(),
           ],
         ),
-        body: SingleChildScrollView(
-          child: BlocBuilder<TiendaCubit, List<Producto>>(
-            builder: (context, tiendaProductos) {
-              return Column(
-                children: [
-                  Stack(
-                    children: [
-                      Hero(
-                        tag: tienda.idTienda,
-                        child: Container(
-                          height: 175,
-                          decoration: BoxDecoration(
-                            color: Colors.orange,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        child: Container(
-                          height: 75,
-                          color: Colors.yellowAccent.withOpacity(.5),
-                          child: ListTile(
-                            title: Text('Nombre de la tienda'),
-                            subtitle: Text('Costo de envio'),
-                            trailing: IconButton(
-                              icon: FaIcon(FontAwesomeIcons.infoCircle),
-                              onPressed: () {},
+        body: ListView(
+          children: [
+            BlocBuilder<TiendaCubit, List<Producto>>(
+              builder: (context, tiendaProductos) {
+                return Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Hero(
+                          tag: tienda.idTienda,
+                          child: Container(
+                            height: 175,
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      itemBuilder: (_, index) {
-                        return Center(
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
                           child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                            width: 50.0,
-                            height: 25.0,
-                            color: Colors.black45,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  tiendaProductos.isEmpty
-                      ? CircularProgressIndicator()
-                      : Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: tiendaProductos.length,
-                            itemBuilder: (context, index) {
-                              final Producto producto = tiendaProductos[index];
-                              return ItemTienda(producto: producto);
-                            },
+                            height: 75,
+                            color: Colors.yellowAccent.withOpacity(.5),
+                            child: ListTile(
+                              title: Text('Nombre de la tienda'),
+                              subtitle: Text('Costo de envio'),
+                              trailing: IconButton(
+                                icon: FaIcon(FontAwesomeIcons.infoCircle),
+                                onPressed: () {},
+                              ),
+                            ),
                           ),
                         ),
-                ],
-              );
-            },
-          ),
+                      ],
+                    ),
+                    Container(
+                      height: 50,
+                      width: double.infinity,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 10,
+                        itemBuilder: (_, index) {
+                          return Center(
+                            child: Container(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              width: 50.0,
+                              height: 25.0,
+                              color: Colors.black45,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    tiendaProductos.isEmpty
+                        ? CircularProgressIndicator()
+                        : Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: tiendaProductos.length,
+                              itemBuilder: (context, index) {
+                                final Producto producto =
+                                    tiendaProductos[index];
+                                return ItemTienda(producto: producto);
+                              },
+                            ),
+                          ),
+                  ],
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

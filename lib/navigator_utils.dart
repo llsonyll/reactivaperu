@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 // EMPUJAR
 Future pushToPage(BuildContext context, Widget widget) async {
-  await Navigator.of(context).push(MaterialPageRoute(builder: (_) => widget));
+  await Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => widget));
 }
 
 // PUSH REPLACEMENT > EMPUJAR Y REEMPLAZAR
 Future pushAndReplaceToPage(BuildContext context, Widget widget) async {
   await Navigator.of(context)
-      .pushReplacement(MaterialPageRoute(builder: (_) => widget));
+      .pushReplacement(MaterialPageRoute(builder: (context) => widget));
 }
 
 // POP ALL AND PUSH > ELIMINAR Y EMPUJAR
